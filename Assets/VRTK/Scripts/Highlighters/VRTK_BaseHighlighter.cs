@@ -32,5 +32,21 @@ namespace VRTK.Highlighters
         /// <param name="color">An optional colour that could be used during the unhighlight phase. Usually will be left as null.</param>
         /// <param name="duration">An optional duration of how long before the unhighlight has occured.</param>
         public abstract void Unhighlight(Color? color = null, float duration = 0f);
+
+        /// <summary>
+        /// The GetOption method is used to return a value from the options array if the given key exists.
+        /// </summary>
+        /// <typeparam name="T">The type that is expected to be returned.</typeparam>
+        /// <param name="options">The dictionary of options to check in.</param>
+        /// <param name="key">The identifier key to look for.</param>
+        /// <returns>The value in the options at the given key.</returns>
+        public virtual T GetOption<T>(Dictionary<string, object> options, string key)
+        {
+            if (options != null && options.ContainsKey(key) && options[key] != null)
+            {
+                return (T)options[key];
+            }
+            return default(T);
+        }
     }
 }

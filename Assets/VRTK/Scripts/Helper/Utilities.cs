@@ -1,6 +1,7 @@
 ﻿namespace VRTK
 {
     using UnityEngine;
+    using System.Reflection;
 
     public class Utilities : MonoBehaviour
     {
@@ -129,6 +130,15 @@
             else
             {
                 return (obj.tag == ignoreString || obj.GetComponent(ignoreString) != null);
+            }
+        }
+
+        public static void CloneComponent(Component source, GameObject destination)
+        {
+            Component tmpComponent = destination.gameObject.AddComponent(source.GetType());
+            foreach (FieldInfo f in source.GetType().GetFields())
+            {
+                f.SetValue(tmpComponent, f.GetValue(source));
             }
         }
     }

@@ -39,10 +39,7 @@ namespace VRTK.Highlighters
             faderRoutines = new Dictionary<string, Coroutine>();
             StoreOriginalMaterials();
 
-            if (options != null && options.ContainsKey("resetMainTexture") && options["resetMainTexture"] != null && options["resetMainTexture"] is bool)
-            {
-                resetMainTexture = (bool)options["resetMainTexture"];
-            }
+            resetMainTexture = GetOption<bool>(options, "resetMainTexture");
         }
 
         /// <summary>
